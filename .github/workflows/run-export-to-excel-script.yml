@@ -18,17 +18,13 @@ jobs:
 
   run-script:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
 
       - name: Checkout repository
 
         uses: actions/checkout@v2
-
-      - name: Set up PowerShell
-
-        uses: microsoft/setup-powershell@v1
 
       - name: Run PowerShell script
 
