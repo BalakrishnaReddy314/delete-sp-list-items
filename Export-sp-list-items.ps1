@@ -10,6 +10,12 @@ param (
     
     [Parameter(Mandatory = $true)]
     [string]$ListName,
+
+    [Parameter(Mandatory = $true)]
+    [string]$FieldInternalName,
+
+    [Parameter(Mandatory = $true)]
+    [string]$FieldValue,
     
     [Parameter(Mandatory = $true)]
     [string]$FolderPath
@@ -37,13 +43,15 @@ Connect-PnPOnline -Url $SiteUrl -Credentials $credentials
 
 # Query to filter list items
 $query = "<View><Query><Where><Eq><FieldRef Name='YourFieldInternalName'/><Value Type='Text'>YourFilterValue</Value></Eq></Where></Query></View>"
-$query = $query.Replace("YourFieldInternalName", $fieldInternalName).Replace("YourFilterValue", $fieldValue)
+$query = $query.Replace("YourFieldInternalName", $FieldInternalName).Replace("YourFilterValue", $FieldValue)
 
 # Get list items based on the query
 $listItems = Get-PnPListItem -List $ListName -Query $query
 
+$fileName = "list-items_$(Get-Date -f "dd_MM_yyyy_hh_mm").csv"
+
 # Export list items to CSV
-$csvFilePath = "C:\Path\to\your\file.csv"
+$csvFilePath = "C:\$fileName"
 $listItems | Select-Object * | Export-Csv -Path $csvFilePath -NoTypeInformation
 
 # Upload the CSV file to SharePoint library
