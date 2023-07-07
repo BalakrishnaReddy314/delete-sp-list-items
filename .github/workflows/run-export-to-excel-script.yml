@@ -34,5 +34,5 @@ jobs:
 
         run: |
 
-          pwsh -File Export-sp-list-items.ps1 -SiteUrl ${{ SITE_URL }} -Username ${{ USER_NAME }} -Password ${{ PASSWORD }} -ListName " Issues List" -FieldInternalName "Status" -FieldValue "Closed" -FolderPath "Shared Documents/automated export files"
+          pwsh -File Export-sp-list-items.ps1 -SiteUrl ${{ secrets.SITE_URL }} -Username ${{ secrets.USER_NAME }} -Password ${{ secrets.PASSWORD }} -ListName " Issues List" -FieldInternalName "Status" -FieldValue "Closed" -FolderPath "Shared Documents/automated export files"
 
