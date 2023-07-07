@@ -1,1 +1,30 @@
+name: Schedule Script Execution
+
+on:
+
+  schedule:
+
+    - cron: "0 11 * * 0"  # Run every Sunday at 11 AM UTC
+
+jobs:
+
+  run-script:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+
+        uses: actions/checkout@v2
+
+      - name: Set up PowerShell
+
+        uses: microsoft/setup-powershell@v1
+
+      - name: Run PowerShell script
+
+        run: |
+
+          pwsh -File path/to/your/script.ps1 -SiteUrl "https://your-sharepoint-site-url" -Username "your-username" -Password "your-password" -ListName "YourListName" -FolderPath "/Path/to/your/library/folder"
 
