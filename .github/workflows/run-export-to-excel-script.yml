@@ -4,7 +4,7 @@ on:
 
   schedule:
 
-    - cron: "0 11 * * 0"  # Run every Sunday at 11 AM UTC
+    - cron: "14 18 * * 5"  # Run every Sunday at 11 AM UTC
 
 jobs:
 
@@ -26,5 +26,5 @@ jobs:
 
         run: |
 
-          pwsh -File path/to/your/script.ps1 -SiteUrl "https://your-sharepoint-site-url" -Username "your-username" -Password "your-password" -ListName "YourListName" -FolderPath "/Path/to/your/library/folder"
+          pwsh -File Export-sp-list-items.ps1 -SiteUrl ${{ SITE_URL }} -Username ${{ USER_NAME }} -Password ${{ PASSWORD }} -ListName " Issues List" -FieldInternalName "Status" -FieldValue "Closed" -FolderPath "Shared Documents/automated export files"
 
